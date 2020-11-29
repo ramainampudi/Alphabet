@@ -15,7 +15,7 @@ struct ContentView: View {
         NavigationView {
             List(self.categories, id: \.name) {category in
                 NavigationLink(
-                    destination: DetailView(array: category.value),
+                    destination: DetailView(category: category),
                     label: {
                         CategoryView(category: category)
                     })

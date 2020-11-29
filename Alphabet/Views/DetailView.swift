@@ -10,7 +10,7 @@ import AVFoundation
 
 struct DetailView: View {
     
-    var array: [String]
+    let category: Category
     @State private var index = 0
     @State private var buttonDisabled = false
     @State private var backButtonDisabled = true
@@ -21,20 +21,32 @@ struct DetailView: View {
         VStack {
             Spacer()
             ZStack {
-                Text(array[self.index])
-                    .font(.system(size: UIScreen.main.bounds.width / CGFloat(array[self.index].count)))
-                    //                    .foregroundColor(.init(red: Double.random(in: 0...0.9), green: Double.random(in: 0...0.9), blue: Double.random(in: 0...0.9)))
-                    .foregroundColor(.white)
-                    .background(
-                        RoundedRectangle(cornerRadius: /*@START_MENU_TOKEN@*/25.0/*@END_MENU_TOKEN@*/, style: .continuous)
-                            .frame(width: UIScreen.main.bounds.width - 40, height: 450, alignment: .center)
-                            .foregroundColor(.init(red: Double.random(in: 0...0.7), green: Double.random(in: 0...0.7), blue: Double.random(in: 0...0.7)))
-                    )
-                    .onTapGesture {
-                        playsound(soundName: array[self.index])
-                    }
+                if category.name.contains("Alphabets")
+                    || category.name.contains("Numbers") {
+                    Text(category.values[self.index])
+                        .font(.system(size: (UIScreen.main.bounds.width - (category.values[self.index] == "Mm" || category.values[self.index] == "Ww" ? 150 : 120)) / CGFloat(Double(category.values[self.index].count) > 1 ? Double(category.values[self.index].count) * 0.6 : Double(category.values[self.index].count))))
+                        .foregroundColor(.white)
+                        .background(
+                            RoundedRectangle(cornerRadius: 15.0, style: .continuous)
+                                .frame(width: UIScreen.main.bounds.width - 40, height: 350, alignment: .center)
+                                .foregroundColor(.init(red: Double.random(in: 0...0.7), green: Double.random(in: 0...0.7), blue: Double.random(in: 0...0.7)))
+                        )
+                } else {
+                    Text(category.values[self.index])
+                        .font(.system(size: (UIScreen.main.bounds.width - 120) / CGFloat(Double(category.values[self.index].count) > 1 ? Double(category.values[self.index].count) * 0.6 : Double(category.values[self.index].count))))
+                        .foregroundColor(.white)
+                }
+            }.onTapGesture {
+                playName(soundName: category.sounds[self.index])
             }
             Spacer()
+            if !category.name.contains("Alphabets")
+                && !category.name.contains("Numbers") {
+                Text(category.sounds[self.index])
+                    .font(.system(size: 20))
+                Spacer()
+            }
+        
             HStack {
                 Button(action: {
                     if self.index > 0 {
@@ -48,7 +60,7 @@ struct DetailView: View {
                     } else {
                         backButtonDisabled.toggle()
                     }
-                    playsound(soundName: array[self.index])
+                    playName(soundName: category.sounds[self.index])
                 }, label: {
                     Image(systemName: "chevron.backward.circle.fill")
                         .font(.system(size: 50))
@@ -60,27 +72,37 @@ struct DetailView: View {
                 Button(action: {
                     self.index = 0
                     backButtonDisabled = true
-                    nextButtonDisabled = false
-                    playsound(soundName: array[self.index])
+                    nextButtonDisabled = (self.index == self.category.values.count - 1) ? true : false
+                    playName(soundName: category.sounds[self.index])
                 }, label: {
                     Image(systemName: "arrow.clockwise.circle.fill")
-                        .font(.system(size: 70))
+                        .font(.system(size: 52))
                         .foregroundColor(.blue)
                 })
                 Spacer()
+                if category.name.contains("Animals") {
+                    Button(action: {
+                        playSound(soundName: category.sounds[self.index], type: "m4a")
+                    }, label: {
+                        Image(systemName: "speaker.wave.2.circle.fill")
+                            .font(.system(size: 52))
+                            .foregroundColor(.orange)
+                    })
+                    Spacer()
+                }
                 Button(action: {
-                    if self.index < self.array.count - 1 {
+                    if self.index < self.category.values.count - 1 {
                         self.index += 1
                         if  backButtonDisabled {
                             backButtonDisabled.toggle()
                         }
-                        if self.index == self.array.count - 1 {
+                        if self.index == self.category.values.count - 1 {
                             nextButtonDisabled.toggle()
                         }
                     } else {
                         nextButtonDisabled.toggle()
                     }
-                    playsound(soundName: array[self.index])
+                    playName(soundName: category.sounds[self.index])
                 }, label: {
                     Image(systemName: "chevron.forward.circle.fill")
                         .font(.system(size: 50))
@@ -89,24 +111,45 @@ struct DetailView: View {
                 .disabled(nextButtonDisabled)
                 .hiddenConditionally(isHidden: nextButtonDisabled)
             }.padding(50)
+            .padding(.bottom, 100)
         }
         .onAppear(
             perform: {
-                nextButtonDisabled = array.count <= 1 ? true : false
-                playsound(soundName: array[self.index])
+                nextButtonDisabled = category.values.count <= 1 ? true : false
+                playName(soundName: category.sounds[self.index])
             })
+        .navigationBarTitle(category.name, displayMode: .inline)
     }
     
-    func playsound(soundName: String) {
-        let url = Bundle.main.url(forResource: soundName, withExtension: "wav")
-        player = try! AVAudioPlayer(contentsOf: url!)
-        player.play()
+    func playName(soundName: String) {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback)
+        } catch(let error) {
+            print(error.localizedDescription)
+        }
+        let utterance = AVSpeechUtterance(string: soundName)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        utterance.rate = 0.4
+        let synthesizer = AVSpeechSynthesizer()
+        synthesizer.speak(utterance)
     }
-
+    
+    func playSound(soundName: String, type: String) {
+        if let url = Bundle.main.url(forResource: soundName, withExtension: type) {
+            do {
+                try AVAudioSession.sharedInstance().setCategory(.playback)
+            } catch(let error) {
+                print(error.localizedDescription)
+            }
+            player = try! AVAudioPlayer(contentsOf: url)
+            player.play()
+        }
+    }
+    
 }
 
 struct DetailView_Previews: PreviewProvider {
     static var previews: some View {
-        DetailView(array: ["1"])
+        DetailView(category: Category(name: "1", imageURL: "1", values: ["1"], sounds: ["1"]))
     }
 }
