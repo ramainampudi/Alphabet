@@ -189,6 +189,50 @@ extension Category {
                 "Satellite", "Ship", "Small Airplane", "Speedboat", "Sport Utility Vehicle",
                 "Suspension Railway", "Taxi", "Tractor", "Train", "Tram", "Tram Car", "Trolleybus",
                 "Truck"
+            ]),
+            
+            Category(name: "Fruits & Nuts", imageURL: "abc", values: [
+                "🥑", "🍌", "🫐", "🍒", "🌰", "🥥", "🍇",
+                "🍏", "🥝", "🍋", "🥭", "🍈", "🫒", "🍊", "🍑",
+                "🥜", "🍐", "🍍", "🍎", "🍓", "🍉"
+            ], sounds: [
+                "Avocado", "Banana", "Blueberries", "Cherries", "Chestnut", "Coconut", "Grapes",
+                "Green Apple", "Kiwi Fruit", "Lemon", "Mango", "Melon", "Olive", "Orange", "Peach",
+                "Peanuts", "Pear", "Pineapple", "Red Apple", "Strawberry", "Watermelon"
+            ]),
+            
+            Category(name: "Vegetables", imageURL: "123", values: [
+                "🫑", "🥦", "🥕", "🌽", "🥒", "🍆", "🧄",
+                "🥬", "🍄", "🧅", "🥔", "🌶️", "🍠", "🍅"
+            ], sounds: [
+                "Bell Pepper", "Broccoli", "Carrot", "Corn", "Cucumber", "Eggplant", "Garlic",
+                "Leafy Green", "Mushroom", "Onion", "Potato", "Red Chilli", "Sweet Potato", "Tomato"
+            ]),
+            
+            Category(name: "Food", imageURL: "abc", values: [
+                "🥓", "🥯", "🥖", "🎂", "🍞",
+                "🌯", "🧈", "🍬", "🥫", "🧀", "🍫",
+                "☕", "🍪", "🥐", "🧁", "🍛",
+                "🍮", "🍡", "🍩", "🥟", "🥚", "🧆", "🍥",
+                "🫓", "🫕", "🥠", "🍟", "🍤",
+                "🥗", "🍵", "🍔", "🍯", "🌭", "🍨",
+                "🍭", "🍱", "🥩", "🍖", "🥛", "🥮", "🍜",
+                "🍢", "🍳", "🦪", "🥞", "🥧", "🍕", "🍿",
+                "🍗", "🥨", "🍚", "🍘", "🧂", "🥪", "🍧",
+                "🍰", "🍦", "🍲", "🍝", "🥙", "🍣",
+                "🌮", "🫔", "🧇"
+            ], sounds: [
+                "Bacon", "Bagel", "Baguette", "Birthday Cake", "Bread",
+                "Burrito", "Butter", "Candy", "Canned Food", "Cheese", "Chocolate",
+                "Coffee", "Cookie", "Croissant", "Cupcake", "Curry & Rice",
+                "Custard", "Dango", "Doughnut", "Dumpling", "Egg", "Falafel", "Fish Cake",
+                "Flatbread", "Fondue", "Fortune Cookie", "French Fries", "Fried Prawn",
+                "Green Salad", "Green Tea", "Hamburger", "Honey", "Hot Dog", "Ice Cream",
+                "Lollipop", "Lunch Box", "Meat", "Meat on Bone", "Milk", "Moon Cake", "Noodles",
+                "Oden",  "Omlette", "Oyster", "Pancakes", "Pie", "Pizza", "Popcorn",
+                "Poultry Leg", "Pretzel", "Rice", "Rice Cracker", "Salt", "Sandwich", "Shaved Ice",
+                "Shortcake", "Soft Ice Cream", "Soup", "Spaghetti", "Stuffed Flatbread", "Sushi",
+                "Taco", "Tamale", "Waffle"
             ])
         ]
     }

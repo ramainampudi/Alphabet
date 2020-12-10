@@ -14,10 +14,12 @@
 		F5301921256DDDF800D2F3D4 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5301920256DDDF800D2F3D4 /* Assets.xcassets */; };
 		F5301924256DDDF800D2F3D4 /* Preview Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F5301923256DDDF800D2F3D4 /* Preview Assets.xcassets */; };
 		F564D2BA256EC82500431E83 /* DetailView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F564D2B9256EC82500431E83 /* DetailView.swift */; };
+		F57099562577E89B00D7C0BA /* QuizView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F57099552577E89B00D7C0BA /* QuizView.swift */; };
 		F5F3AFB22571769800B162A6 /* Buffalo.m4a in Resources */ = {isa = PBXBuildFile; fileRef = F5F3AFB02571769800B162A6 /* Buffalo.m4a */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		F5046A5D25740AA90031DD29 /* Alphabet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Alphabet.entitlements; sourceTree = "<group>"; };
 		F50D1E302570004D00C15810 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		F50D1E3525701BC900C15810 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		F5301919256DDDF600D2F3D4 /* Alphabet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alphabet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -27,6 +29,7 @@
 		F5301923256DDDF800D2F3D4 /* Preview Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = "Preview Assets.xcassets"; sourceTree = "<group>"; };
 		F5301925256DDDF800D2F3D4 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		F564D2B9256EC82500431E83 /* DetailView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = DetailView.swift; sourceTree = "<group>"; };
+		F57099552577E89B00D7C0BA /* QuizView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = QuizView.swift; sourceTree = "<group>"; };
 		F5F3AFB02571769800B162A6 /* Buffalo.m4a */ = {isa = PBXFileReference; lastKnownFileType = file; path = Buffalo.m4a; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -76,10 +79,10 @@
 		F530191B256DDDF600D2F3D4 /* Alphabet */ = {
 			isa = PBXGroup;
 			children = (
+				F5046A5D25740AA90031DD29 /* Alphabet.entitlements */,
 				F50D1E3925704D8400C15810 /* Sounds */,
 				F50D1E2F2570001700C15810 /* Model */,
 				F530191C256DDDF600D2F3D4 /* AlphabetApp.swift */,
-				F530191E256DDDF600D2F3D4 /* ContentView.swift */,
 				F5301920256DDDF800D2F3D4 /* Assets.xcassets */,
 				F5301925256DDDF800D2F3D4 /* Info.plist */,
 				F5301922256DDDF800D2F3D4 /* Preview Content */,
@@ -99,8 +102,10 @@
 		F564D2BC256EC95900431E83 /* Views */ = {
 			isa = PBXGroup;
 			children = (
+				F530191E256DDDF600D2F3D4 /* ContentView.swift */,
 				F564D2B9256EC82500431E83 /* DetailView.swift */,
 				F50D1E3525701BC900C15810 /* CategoryView.swift */,
+				F57099552577E89B00D7C0BA /* QuizView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -188,6 +193,7 @@
 				F530191F256DDDF600D2F3D4 /* ContentView.swift in Sources */,
 				F530191D256DDDF600D2F3D4 /* AlphabetApp.swift in Sources */,
 				F50D1E3625701BC900C15810 /* CategoryView.swift in Sources */,
+				F57099562577E89B00D7C0BA /* QuizView.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -315,6 +321,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Alphabet/Alphabet.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Alphabet/Preview Content\"";
 				DEVELOPMENT_TEAM = LDL7UMXTXK;
@@ -327,6 +334,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ramainampudi.Alphabet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};
@@ -337,6 +345,7 @@
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				ASSETCATALOG_COMPILER_GLOBAL_ACCENT_COLOR_NAME = AccentColor;
+				CODE_SIGN_ENTITLEMENTS = Alphabet/Alphabet.entitlements;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_ASSET_PATHS = "\"Alphabet/Preview Content\"";
 				DEVELOPMENT_TEAM = LDL7UMXTXK;
@@ -349,6 +358,7 @@
 				);
 				PRODUCT_BUNDLE_IDENTIFIER = com.ramainampudi.Alphabet;
 				PRODUCT_NAME = "$(TARGET_NAME)";
+				SUPPORTS_MACCATALYST = NO;
 				SWIFT_VERSION = 5.0;
 				TARGETED_DEVICE_FAMILY = 1;
 			};

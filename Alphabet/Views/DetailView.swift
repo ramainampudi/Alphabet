@@ -119,6 +119,11 @@ struct DetailView: View {
                 playName(soundName: category.sounds[self.index])
             })
         .navigationBarTitle(category.name, displayMode: .inline)
+        .navigationBarItems(trailing: NavigationLink(
+                                destination: QuizView(category: category),
+                                label: {
+                                    Text("Quiz")
+                                }))
     }
     
     func playName(soundName: String) {
