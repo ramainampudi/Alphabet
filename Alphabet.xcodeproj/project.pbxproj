@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		F5057F3F258261B300DACEAB /* ResultsView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F5057F3E258261B300DACEAB /* ResultsView.swift */; };
 		F50D1E312570004D00C15810 /* Category.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50D1E302570004D00C15810 /* Category.swift */; };
 		F50D1E3625701BC900C15810 /* CategoryView.swift in Sources */ = {isa = PBXBuildFile; fileRef = F50D1E3525701BC900C15810 /* CategoryView.swift */; };
 		F530191D256DDDF600D2F3D4 /* AlphabetApp.swift in Sources */ = {isa = PBXBuildFile; fileRef = F530191C256DDDF600D2F3D4 /* AlphabetApp.swift */; };
@@ -20,6 +21,7 @@
 
 /* Begin PBXFileReference section */
 		F5046A5D25740AA90031DD29 /* Alphabet.entitlements */ = {isa = PBXFileReference; lastKnownFileType = text.plist.entitlements; path = Alphabet.entitlements; sourceTree = "<group>"; };
+		F5057F3E258261B300DACEAB /* ResultsView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ResultsView.swift; sourceTree = "<group>"; };
 		F50D1E302570004D00C15810 /* Category.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Category.swift; sourceTree = "<group>"; };
 		F50D1E3525701BC900C15810 /* CategoryView.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CategoryView.swift; sourceTree = "<group>"; };
 		F5301919256DDDF600D2F3D4 /* Alphabet.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Alphabet.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -106,6 +108,7 @@
 				F564D2B9256EC82500431E83 /* DetailView.swift */,
 				F50D1E3525701BC900C15810 /* CategoryView.swift */,
 				F57099552577E89B00D7C0BA /* QuizView.swift */,
+				F5057F3E258261B300DACEAB /* ResultsView.swift */,
 			);
 			path = Views;
 			sourceTree = "<group>";
@@ -192,6 +195,7 @@
 				F564D2BA256EC82500431E83 /* DetailView.swift in Sources */,
 				F530191F256DDDF600D2F3D4 /* ContentView.swift in Sources */,
 				F530191D256DDDF600D2F3D4 /* AlphabetApp.swift in Sources */,
+				F5057F3F258261B300DACEAB /* ResultsView.swift in Sources */,
 				F50D1E3625701BC900C15810 /* CategoryView.swift in Sources */,
 				F57099562577E89B00D7C0BA /* QuizView.swift in Sources */,
 			);

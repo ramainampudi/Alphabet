@@ -10,15 +10,17 @@ import SwiftUI
 struct CategoryView: View {
     let category: Category
     var body: some View {
-        HStack {
+        VStack {
             Image(category.imageURL)
                 .resizable()
                 .scaledToFit()
-                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
+//                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .cornerRadius(20)
+                .padding(.leading)
+                .padding(.trailing)
             Text(category.name)
-                .font(.title)
-                .padding(.leading, 10)
+                .font(.title2)
+                .padding(.bottom)
         }
         .padding(5)
     }

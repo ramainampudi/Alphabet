@@ -37,7 +37,7 @@ struct DetailView: View {
                         .foregroundColor(.white)
                 }
             }.onTapGesture {
-                playName(soundName: category.sounds[self.index])
+                category.playName(soundName: category.sounds[self.index])
             }
             Spacer()
             if !category.name.contains("Alphabets")
@@ -60,7 +60,7 @@ struct DetailView: View {
                     } else {
                         backButtonDisabled.toggle()
                     }
-                    playName(soundName: category.sounds[self.index])
+                    category.playName(soundName: category.sounds[self.index])
                 }, label: {
                     Image(systemName: "chevron.backward.circle.fill")
                         .font(.system(size: 50))
@@ -73,7 +73,7 @@ struct DetailView: View {
                     self.index = 0
                     backButtonDisabled = true
                     nextButtonDisabled = (self.index == self.category.values.count - 1) ? true : false
-                    playName(soundName: category.sounds[self.index])
+                    category.playName(soundName: category.sounds[self.index])
                 }, label: {
                     Image(systemName: "arrow.clockwise.circle.fill")
                         .font(.system(size: 52))
@@ -102,7 +102,7 @@ struct DetailView: View {
                     } else {
                         nextButtonDisabled.toggle()
                     }
-                    playName(soundName: category.sounds[self.index])
+                    category.playName(soundName: category.sounds[self.index])
                 }, label: {
                     Image(systemName: "chevron.forward.circle.fill")
                         .font(.system(size: 50))
@@ -116,7 +116,7 @@ struct DetailView: View {
         .onAppear(
             perform: {
                 nextButtonDisabled = category.values.count <= 1 ? true : false
-                playName(soundName: category.sounds[self.index])
+                category.playName(soundName: category.sounds[self.index])
             })
         .navigationBarTitle(category.name, displayMode: .inline)
         .navigationBarItems(trailing: NavigationLink(
@@ -124,19 +124,6 @@ struct DetailView: View {
                                 label: {
                                     Text("Quiz")
                                 }))
-    }
-    
-    func playName(soundName: String) {
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback)
-        } catch(let error) {
-            print(error.localizedDescription)
-        }
-        let utterance = AVSpeechUtterance(string: soundName)
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-        utterance.rate = 0.4
-        let synthesizer = AVSpeechSynthesizer()
-        synthesizer.speak(utterance)
     }
     
     func playSound(soundName: String, type: String) {

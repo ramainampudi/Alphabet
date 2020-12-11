@@ -6,7 +6,8 @@
 //
 
 import Foundation
-struct Category {
+import AVFoundation
+struct Category: Hashable {
     var name: String
     var imageURL: String
     var values: [String]
@@ -50,7 +51,7 @@ extension Category {
                 "91", "92", "93", "94", "95", "96", "97", "98", "99", "100"
             ]),
             
-            Category(name: "Farm Animals", imageURL: "123", values: [
+            Category(name: "Farm Animals", imageURL: "farm", values: [
                 "🐃", "🐈", "🐥", "🐄", "🐕", "🦆", "🐐", "🐎", "🦙",
                 "🐂", "🐖", "🐩", "🐇", "🐏", "🐓", "🐑", "🦃"
             ], sounds: [
@@ -58,7 +59,7 @@ extension Category {
                 "Ox", "Pig", "Poodle", "Rabbit", "Ram", "Rooster", "Sheep", "Turkey"
             ]),
             
-            Category(name: "Forest Animals", imageURL: "123", values: [
+            Category(name: "Forest Animals", imageURL: "forest", values: [
                 "🐻", "🦫", "🦬", "🐗", "🦌", "🦔", "🐨", "🦎", "🐒",
                 "🐁", "🦦", "🐼", "🐆", "🦝", "🦂", "🦥", "🐌",
                 "🐿", "🐺", "🪱"
@@ -68,7 +69,7 @@ extension Category {
                 "Squirrel or Chipmunk", "Wolf", "Worm"
             ]),
             
-            Category(name: "Jungle Animals", imageURL: "123", values: [
+            Category(name: "Jungle Animals", imageURL: "jungle", values: [
                 "🦇", "🦕", "🐘", "🦒", "🦍", "🐹", "🦘", "🐆",
                 "🦁", "🦧", "🦏", "🐍", "🐅", "🦓"
             ], sounds: [
@@ -76,7 +77,7 @@ extension Category {
                 "Lion", "Orangutan", "Rhinoceros", "Snake", "Tiger", "Zebra"
             ]),
             
-            Category(name: "Aquatic Animals", imageURL: "abc", values: [
+            Category(name: "Aquatic Animals", imageURL: "aqua", values: [
                 "🐊", "🐡", "🦀", "🐬", "🐟", "🐸", "🦛",
                 "🦞", "🐙", "🦭", "🦈", "🦐", "🐳",
                 "🦑", "🐠", "🐢", "🐋"
@@ -86,13 +87,13 @@ extension Category {
                 "Squid", "Tropical Fish", "Turtle", "Whale"
             ]),
             
-            Category(name: "Desert Animals", imageURL: "123", values: [
+            Category(name: "Desert Animals", imageURL: "desert", values: [
                 "🦡", "🐪", "🐫", "🦊", "🦨"
             ], sounds: [
                 "Badger", "Camel", "Double Humped Camel", "Fox", "Skunk"
             ]),
             
-            Category(name: "Insects", imageURL: "abc", values: [
+            Category(name: "Insects", imageURL: "insect", values: [
                 "🐜", "🪲", "🐛", "🦋", "🪳",
                 "🦗", "🪰", "🐝", "🐞", "🦟", "🕷"
             ], sounds: [
@@ -100,7 +101,7 @@ extension Category {
                 "Cricket", "Fly", "Honey Bee", "Ladybug", "Mosquito", "Spider"
             ]),
             
-            Category(name: "Birds", imageURL: "123", values: [
+            Category(name: "Birds", imageURL: "bird", values: [
                 "🦤", "🕊", "🦅", "🦩", "🦉",
                 "🦜", "🦚", "🐧", "🐓", "🦢"
             ], sounds: [
@@ -108,7 +109,7 @@ extension Category {
                 "Parrot", "Peacock", "Penguin", "Rooster", "Swan"
             ]),
             
-            Category(name: "Body Parts", imageURL: "abc", values: [
+            Category(name: "Body Parts", imageURL: "body", values: [
                 "💪", "🦴", "🧠", "👂", "👁️",
                 "🦶", "🫀", "🦵", "🫁", "👄",
                 "👃", "👅", "🦷"
@@ -118,7 +119,7 @@ extension Category {
                 "Nose", "Tongue", "Tooth"
             ]),
             
-            Category(name: "Professions", imageURL: "123", values: [
+            Category(name: "Professions", imageURL: "prof", values: [
                 "🧑‍🎨", "🧑‍🚀", "🤡", "🧑‍🚒", "🧑‍🍳", "🕵️",
                 "🧑‍⚕️", "🧑‍🏭", "🧑‍🌾", "🧑‍🚒", "💂",
                 "🧑‍⚖️", "🤹‍♂️", "🧙", "🧑‍🔧", "🥷", "🧑🏻‍💼",
@@ -132,7 +133,7 @@ extension Category {
                 "Santa Claus", "Scientist", "Singer", "Student", "Teacher"
             ]),
             
-            Category(name: "Fantasy", imageURL: "abc", values: [
+            Category(name: "Fantasy", imageURL: "fantasy", values: [
                 "👽", "🐉", "🧝", "🧚", "🧞", "👺", "👻", "🧜‍♀️",
                 "👹", "🧙", "🦸", "🦹", "🦄", "🧛🏻‍♂️", "🧟‍♂️"
             ], sounds: [
@@ -140,7 +141,7 @@ extension Category {
                 "Ogre", "Sorcerer", "Superhero", "Supervillain", "Unicorn", "Vampire", "Zombie"
             ]),
             
-            Category(name: "Music", imageURL: "123", values: [
+            Category(name: "Music", imageURL: "music", values: [
                 "🪗", "🥁", "🎧", "🎸", "🪘",
                 "🎤", "🎹", "🎷", "🎺", "🎻"
             ], sounds: [
@@ -149,7 +150,7 @@ extension Category {
                 "Violin"
             ]),
             
-            Category(name: "Sports", imageURL: "abc", values: [
+            Category(name: "Sports", imageURL: "sport", values: [
                 "🏈", "🏹", "🏸", "⚾", "🏀",
                 "🏍", "🎳", "🥊", "🏎", "♟️",
                 "🧗", "🏏", "🥌", "🚴", "🎯", "🤺",
@@ -169,7 +170,7 @@ extension Category {
                 "Taekwondo", "Tennis", "Volleyball", "Water Polo", "Weightlifting", "Wrestling"
             ]),
             
-            Category(name: "Vehicles", imageURL: "123", values: [
+            Category(name: "Vehicles", imageURL: "vehicle", values: [
                 "🚡", "✈️", "🚑", "🛺",
                 "🚲", "🚅", "🚌", "🚗", "⛴️", "🚒",
                 "🛸", "🚁", "🚄", "🛴", "🚈",
@@ -191,7 +192,7 @@ extension Category {
                 "Truck"
             ]),
             
-            Category(name: "Fruits & Nuts", imageURL: "abc", values: [
+            Category(name: "Fruits & Nuts", imageURL: "fruit", values: [
                 "🥑", "🍌", "🫐", "🍒", "🌰", "🥥", "🍇",
                 "🍏", "🥝", "🍋", "🥭", "🍈", "🫒", "🍊", "🍑",
                 "🥜", "🍐", "🍍", "🍎", "🍓", "🍉"
@@ -201,7 +202,7 @@ extension Category {
                 "Peanuts", "Pear", "Pineapple", "Red Apple", "Strawberry", "Watermelon"
             ]),
             
-            Category(name: "Vegetables", imageURL: "123", values: [
+            Category(name: "Vegetables", imageURL: "veg", values: [
                 "🫑", "🥦", "🥕", "🌽", "🥒", "🍆", "🧄",
                 "🥬", "🍄", "🧅", "🥔", "🌶️", "🍠", "🍅"
             ], sounds: [
@@ -209,7 +210,7 @@ extension Category {
                 "Leafy Green", "Mushroom", "Onion", "Potato", "Red Chilli", "Sweet Potato", "Tomato"
             ]),
             
-            Category(name: "Food", imageURL: "abc", values: [
+            Category(name: "Food", imageURL: "food", values: [
                 "🥓", "🥯", "🥖", "🎂", "🍞",
                 "🌯", "🧈", "🍬", "🥫", "🧀", "🍫",
                 "☕", "🍪", "🥐", "🧁", "🍛",
@@ -235,6 +236,19 @@ extension Category {
                 "Taco", "Tamale", "Waffle"
             ])
         ]
+    }
+    
+    func playName(soundName: String) {
+        do {
+            try AVAudioSession.sharedInstance().setCategory(.playback)
+        } catch(let error) {
+            print(error.localizedDescription)
+        }
+        let utterance = AVSpeechUtterance(string: soundName)
+        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
+        utterance.rate = 0.4
+        let synthesizer = AVSpeechSynthesizer()
+        synthesizer.speak(utterance)
     }
 
 }

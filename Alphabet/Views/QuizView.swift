@@ -22,27 +22,32 @@ struct QuizView: View {
     
     var body: some View {
         if self.count <= 10 {
-            VStack {
+            VStack(alignment: .trailing) {
                 HStack {
-                    Spacer()
                     Text("Score: \(self.score)")
-                        .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: .trailing)
-                        .padding(.trailing, 50)
+                        .font(.title3)
+                        .padding(20)
                 }
                 Spacer()
-        
                 Button(action: {
-                    playName(soundName: category.sounds[self.correctIndex])
+                    category.playName(soundName: category.sounds[self.correctIndex])
                 }, label: {
-                    Image(systemName: "speaker.wave.2.circle.fill")
-                        .font(.system(size: 100))
-                        .foregroundColor(.purple)
+                    ZStack {
+                        Image(systemName: "speaker.wave.2.circle.fill")
+                            .font(.system(size: 100))
+                            .foregroundColor(Color("bgColor"))
+                    }
+                    .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                    .background(RoundedRectangle(cornerRadius: 15.0, style: .continuous)
+                                    .frame(alignment: .center)
+                                    .foregroundColor(.purple))
+                    .padding(20)
                 })
                 Spacer()
                 HStack  {
                     Button(action: {
                         let index = self.correctIndex < self.otherIndex ? self.correctIndex : self.otherIndex
-                        checkAnswer(index, self.correctIndex)
+                        checkAnswer(index, self.correctIndex, self.category)
                     }, label: {
                         Text(category.values[self.correctIndex < self.otherIndex ? self.correctIndex : self.otherIndex])
                             .padding()
@@ -52,12 +57,13 @@ struct QuizView: View {
                                 RoundedRectangle(cornerRadius: 15.0, style: .continuous)
                                     .frame(alignment: .center)
                                     .foregroundColor(.blue))
-                    }).padding()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                    })
                     .disabled(self.buttonDisable)
-
+                    
                     Button(action: {
                         let index = self.correctIndex > self.otherIndex ? self.correctIndex : self.otherIndex
-                        checkAnswer(index, self.correctIndex)
+                        checkAnswer(index, self.correctIndex, self.category)
                     }, label: {
                         Text(category.values[self.correctIndex > self.otherIndex ? self.correctIndex : self.otherIndex])
                             .padding()
@@ -67,56 +73,42 @@ struct QuizView: View {
                                 RoundedRectangle(cornerRadius: 15.0, style: .continuous)
                                     .frame(alignment: .center)
                                     .foregroundColor(.blue))
-                    }).padding()
+                            .frame(maxWidth: .infinity, maxHeight: .infinity, alignment: .center)
+                    })
                     .disabled(self.buttonDisable)
                 }
-                
                 Spacer()
                 Button(action: {
                     setIndex()
                 }, label: {
                     Text("Next")
-                        .font(/*@START_MENU_TOKEN@*/.title/*@END_MENU_TOKEN@*/)
-                }).padding()
+                        .font(.title2)
+                        .foregroundColor(.white)
+                        .frame(maxWidth: .infinity, alignment: .center)
+                        .padding()
+                        .background(LinearGradient(gradient: Gradient(colors: [Color("LightBlue"), Color("DarkBlue")]), startPoint: .leading, endPoint: .trailing ))
+                        .cornerRadius(15)
+                        .padding(.horizontal, 20)
+                })
             }
             .navigationBarTitle("\(category.name) Quiz", displayMode: .inline)
-            .background(self.showCorrect ? .green : self.showIncorrect ? .orange : Color("bgColor"))
+            .background((self.showCorrect ? .green : self.showIncorrect ? .orange : Color("bgColor")).edgesIgnoringSafeArea(.bottom))
             .onAppear(perform: {
                 setIndex()
             })
         } else {
-            VStack {
-                Text(self.score > 6 ? "Congratulations!" : "Try hard")
-                    .font(.largeTitle)
-                Text("Final Score: \(self.score) of \(self.count - 1)")
-                    .font(.title)
-                    .navigationBarTitle("\(category.name) Quiz")
-                    .padding()
-            }
+            ResultsView(score: self.score, categoryName: category.name, totalNoOfQs: self.count - 1)
         }
     }
     
-    func playName(soundName: String) {
-        do {
-            try AVAudioSession.sharedInstance().setCategory(.playback)
-        } catch(let error) {
-            print(error.localizedDescription)
-        }
-        let utterance = AVSpeechUtterance(string: soundName)
-        utterance.voice = AVSpeechSynthesisVoice(language: "en-US")
-        utterance.rate = 0.4
-        let synthesizer = AVSpeechSynthesizer()
-        synthesizer.speak(utterance)
-    }
-    
-    func checkAnswer(_ index: Int, _ correctIndex: Int) {
+    func checkAnswer(_ index: Int, _ correctIndex: Int, _  category:  Category) {
         if index == correctIndex {
             self.score += 1
             showCorrect.toggle()
-            playName(soundName: "That's right!")
+            category.playName(soundName: "That's right!")
         } else {
             showIncorrect.toggle()
-            playName(soundName: "Oh! That's Wrong.")
+            category.playName(soundName: "Oh! That's Wrong.")
         }
         self.buttonDisable = true
     }
@@ -130,7 +122,7 @@ struct QuizView: View {
             return
         }
         self.correctIndex = Int.random(in: 0 ..< self.category.values.count)
-        playName(soundName: category.sounds[self.correctIndex])
+        self.category.playName(soundName: category.sounds[self.correctIndex])
         self.num = true
         while self.num {
             self.otherIndex = Int.random(in: 0 ..< self.category.values.count)
