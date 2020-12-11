@@ -43,7 +43,7 @@ struct DetailView: View {
             if !category.name.contains("Alphabets")
                 && !category.name.contains("Numbers") {
                 Text(category.sounds[self.index])
-                    .font(.system(size: 20))
+                    .font(.title2)
                 Spacer()
             }
         
@@ -123,6 +123,12 @@ struct DetailView: View {
                                 destination: QuizView(category: category),
                                 label: {
                                     Text("Quiz")
+                                        .fontWeight(.semibold)
+                                        .foregroundColor(.white)
+                                        .padding(5)
+                                        .padding(.horizontal, 7)
+                                        .background(Color.blue)
+                                        .cornerRadius(5)
                                 }))
     }
     

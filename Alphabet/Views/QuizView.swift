@@ -90,6 +90,7 @@ struct QuizView: View {
                         .cornerRadius(15)
                         .padding(.horizontal, 20)
                 })
+                .padding()
             }
             .navigationBarTitle("\(category.name) Quiz", displayMode: .inline)
             .background((self.showCorrect ? .green : self.showIncorrect ? .orange : Color("bgColor")).edgesIgnoringSafeArea(.bottom))

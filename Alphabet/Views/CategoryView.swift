@@ -14,13 +14,11 @@ struct CategoryView: View {
             Image(category.imageURL)
                 .resizable()
                 .scaledToFit()
-//                .frame(width: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, height: /*@START_MENU_TOKEN@*/100/*@END_MENU_TOKEN@*/, alignment: /*@START_MENU_TOKEN@*/.center/*@END_MENU_TOKEN@*/)
                 .cornerRadius(20)
-                .padding(.leading)
-                .padding(.trailing)
+                .padding(.horizontal)
+                .padding(.top)
             Text(category.name)
                 .font(.title2)
-                .padding(.bottom)
         }
         .padding(5)
     }
